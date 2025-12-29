@@ -33,18 +33,21 @@ new class extends Component
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.dogs.index')" :active="request()->routeIs('admin.dogs.*')">
-                        🛠 Admin Dogs
-                    </x-nav-link>
                     <x-nav-link :href="route('dogs.index')" :active="request()->routeIs('dogs.*')">
                         🐶 Dogs for Adoption
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.adoptions.index')" :active="request()->routeIs('admin.adoptions.*')">
-                        🛠 Adoption Requests
-                    </x-nav-link>
-                    @if(auth()->user()->is_admin)
-                        <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
-                            🛡 User Admin
+                    @if(auth()->user()?->isAdmin())
+                        <x-nav-link href="{{ route('admin.dogs.index') }}">
+                            🐶 Manage Dogs
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('admin.adoptions.index') }}">
+                            📋 Adoptions
+                        </x-nav-link>
+                    @endif
+
+                    @if(auth()->user()?->isSuperAdmin())
+                        <x-nav-link href="{{ route('admin.users.index') }}">
+                            👥 User Management
                         </x-nav-link>
                     @endif
 
