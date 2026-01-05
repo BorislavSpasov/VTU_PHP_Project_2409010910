@@ -9,9 +9,24 @@ use Illuminate\Support\Facades\Auth;
 
 class AdoptionController extends Controller
 {
-        public function index()
+    public function index(Request $request)
     {
-        $adoptions = Adoption::with('dog', 'user')->latest()->get();
+        $adoptions = Adoption::with('dog', 'user')
+            ->when($request->search, function ($query) use ($request) {
+                $query->where(function ($q) use ($request) {
+                    $q->where('first_name', 'like', "%{$request->search}%")
+                    ->orWhere('last_name', 'like', "%{$request->search}%")
+                    ->orWhereHas('dog', function ($dogQuery) use ($request) {
+                        $dogQuery->where('name', 'like', "%{$request->search}%");
+                    });
+                });
+            })
+            ->when($request->status, function ($query) use ($request) {
+                $query->where('status', $request->status);
+            })
+            ->latest()
+            ->get();
+
         return view('admin.adoptions.index', compact('adoptions'));
     }
 
@@ -35,24 +50,40 @@ class AdoptionController extends Controller
     
     public function store(Request $request)
     {
-        $request->validate([
-            'dog_id' => 'required|exists:dogs,id',
+        $validated = $request->validate([
+            'dog_id'     => 'required|exists:dogs,id',
+            'first_name' => 'required|string|max:255',
+            'last_name'  => 'required|string|max:255',
+            'email'      => 'required|email',
+            'phone'      => 'required|string|max:20',
+            'about'      => 'required|string|min:20',
+            'reason'     => 'required|string|min:20',
         ]);
 
-        $dog = Dog::findOrFail($request->dog_id);
-
-        // Prevent multiple requests by same user
-        if (Adoption::where('user_id', Auth::id())->where('dog_id', $dog->id)->exists()) {
+        // Prevent multiple requests
+        if (
+            Adoption::where('user_id', Auth::id())
+                ->where('dog_id', $validated['dog_id'])
+                ->exists()
+        ) {
             return back()->with('error', 'You have already requested this dog.');
         }
 
         Adoption::create([
+            ...$validated,
             'user_id' => Auth::id(),
-            'dog_id' => $dog->id,
-            'status' => 'pending',
+            'status'  => 'pending',
         ]);
 
         return back()->with('success', 'Adoption request submitted.');
     }
+
+    public function destroy(Adoption $adoption)
+    {
+        $adoption->delete();
+
+        return back()->with('success', 'Adoption request removed.');
+    }
+
     
 }

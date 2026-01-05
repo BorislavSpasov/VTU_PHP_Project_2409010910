@@ -9,7 +9,18 @@ class Adoption extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'dog_id', 'status'];
+    protected $fillable = [
+        'user_id',
+        'dog_id',
+        'status',
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+        'about',
+        'reason',
+    ];
+
 
     public function dog()
     {

@@ -46,3 +46,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::middleware(['auth', 'super-admin'])->group(function () {
     Route::resource('/admin/users', UserAdminController::class, ['as' => 'admin']);
 });
+
+Route::delete('/admin/adoptions/{adoption}', [AdoptionController::class, 'destroy'])
+    ->name('admin.adoptions.destroy');

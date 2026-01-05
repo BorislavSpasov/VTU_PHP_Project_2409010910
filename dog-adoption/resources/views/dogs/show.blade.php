@@ -17,15 +17,35 @@
     </div>
 </x-app-layout>
 @auth
-    @if(!$dog->is_adopted && !$dog->adoptions->where('user_id', auth()->id())->count())
-        <form method="POST" action="{{ route('adoptions.store') }}" class="mt-4">
-            @csrf
-            <input type="hidden" name="dog_id" value="{{ $dog->id }}">
-            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Request Adoption</button>
-        </form>
-    @elseif($dog->adoptions->where('user_id', auth()->id())->count())
-        <div class="mt-4 text-gray-700">
-            You have already requested adoption for this dog.
-        </div>
-    @endif
+@if(!$dog->is_adopted && !$dog->adoptions->where('user_id', auth()->id())->count())
+
+<form method="POST" action="{{ route('adoptions.store') }}" class="mt-6 space-y-4">
+    @csrf
+    <input type="hidden" name="dog_id" value="{{ $dog->id }}">
+
+    <div class="grid grid-cols-2 gap-4">
+        <input name="first_name" placeholder="First Name" class="border p-2 w-full" required>
+        <input name="last_name" placeholder="Last Name" class="border p-2 w-full" required>
+    </div>
+
+    <input type="email" name="email" placeholder="Email" class="border p-2 w-full" required>
+    <input name="phone" placeholder="Phone Number" class="border p-2 w-full" required>
+
+    <textarea name="about" placeholder="Tell us about yourself"
+        class="border p-2 w-full" rows="3" required></textarea>
+
+    <textarea name="reason" placeholder="Why do you want to adopt this dog?"
+        class="border p-2 w-full" rows="3" required></textarea>
+
+    <button class="bg-green-600 text-white px-4 py-2 rounded">
+        Request Adoption
+    </button>
+</form>
+
+@elseif($dog->adoptions->where('user_id', auth()->id())->count())
+    <div class="mt-4 text-gray-700">
+        You have already requested adoption for this dog.
+    </div>
+@endif
 @endauth
+
