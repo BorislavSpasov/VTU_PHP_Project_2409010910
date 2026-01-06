@@ -22,7 +22,7 @@ class DogAdminController extends Controller
             'age' => 'required|integer|min:0',
             'gender' => 'required|in:male,female',
             'description' => 'nullable|string',
-            'image' => 'required|image|max:2048', // 2MB max
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:max_width=2000,max_height=2000', // 2MB max
         ]);
 
         $path = $request->file('image')->store('dogs', 'public');
@@ -53,7 +53,7 @@ class DogAdminController extends Controller
             'age' => 'required|integer|min:0',
             'gender' => 'required|in:male,female',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:max_width=2000,max_height=2000',
         ]);
 
         $dog->fill($request->only(['name', 'breed', 'age', 'gender', 'description']));

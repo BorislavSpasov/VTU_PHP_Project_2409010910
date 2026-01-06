@@ -34,20 +34,20 @@ new class extends Component
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('dogs.index')" :active="request()->routeIs('dogs.*')">
-                        🐶 Dogs for Adoption
+                        Dogs for Adoption
                     </x-nav-link>
                     @if(auth()->user()?->isAdmin())
                         <x-nav-link href="{{ route('admin.dogs.index') }}">
-                            🐶 Manage Dogs
+                            Manage Dogs
                         </x-nav-link>
                         <x-nav-link href="{{ route('admin.adoptions.index') }}">
-                            📋 Adoptions
+                            Adoptions
                         </x-nav-link>
                     @endif
 
                     @if(auth()->user()?->isSuperAdmin())
                         <x-nav-link href="{{ route('admin.users.index') }}">
-                            👥 User Management
+                            User Management
                         </x-nav-link>
                     @endif
 
