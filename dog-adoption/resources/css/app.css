@@ -1,5 +1,6 @@
 @import './adoptions.css';
 @import './users.css';
+@import './admin-dogs.css';
 
 @tailwind base;
 @tailwind components;
