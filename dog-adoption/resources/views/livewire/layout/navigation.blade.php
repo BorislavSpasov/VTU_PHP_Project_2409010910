@@ -37,21 +37,20 @@ new class extends Component
                         Dogs for Adoption
                     </x-nav-link>
                     @if(auth()->user()?->isAdmin())
-                        <x-nav-link href="{{ route('admin.dogs.index') }}">
+                        <x-nav-link :href="route('admin.dogs.index')" :active="request()->routeIs('admin.dogs.*')">
                             Manage Dogs
                         </x-nav-link>
-                        <x-nav-link href="{{ route('admin.adoptions.index') }}">
+
+                        <x-nav-link :href="route('admin.adoptions.index')" :active="request()->routeIs('admin.adoptions.*')">
                             Adoptions
                         </x-nav-link>
                     @endif
 
                     @if(auth()->user()?->isSuperAdmin())
-                        <x-nav-link href="{{ route('admin.users.index') }}">
+                        <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.*')">
                             User Management
                         </x-nav-link>
                     @endif
-
-
                 </div>
             </div>
 
