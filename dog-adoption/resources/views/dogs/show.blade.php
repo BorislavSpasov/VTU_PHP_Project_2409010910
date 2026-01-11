@@ -16,6 +16,29 @@
         <a href="{{ route('dogs.index') }}" class="mt-4 inline-block bg-gray-500 text-white px-4 py-2 rounded">Back to Dogs</a>
     </div>
 </x-app-layout>
+
+@if ($errors->any())
+    <div class="bg-red-100 p-3 rounded mb-4 text-red-700">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if (session('success'))
+    <div class="bg-green-100 p-3 rounded mb-4 text-green-700">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="bg-yellow-100 p-3 rounded mb-4 text-yellow-700">
+        {{ session('error') }}
+    </div>
+@endif
+
 @auth
 @if(!$dog->is_adopted && !$dog->adoptions->where('user_id', auth()->id())->count())
 

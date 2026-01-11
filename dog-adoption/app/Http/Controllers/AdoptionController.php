@@ -60,12 +60,9 @@ class AdoptionController extends Controller
             'reason'     => 'required|string|min:20',
         ]);
 
-        // Prevent multiple requests
-        if (
-            Adoption::where('user_id', Auth::id())
-                ->where('dog_id', $validated['dog_id'])
-                ->exists()
-        ) {
+        if (Adoption::where('user_id', Auth::id())
+                    ->where('dog_id', $validated['dog_id'])
+                    ->exists()) {
             return back()->with('error', 'You have already requested this dog.');
         }
 
