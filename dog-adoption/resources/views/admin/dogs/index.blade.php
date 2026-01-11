@@ -11,21 +11,51 @@
             </div>
         @endif
 
-        <form method="POST" enctype="multipart/form-data" action="{{ route('admin.dogs.store') }}" class="mb-6">
+        <form method="POST" enctype="multipart/form-data"
+            action="{{ route('admin.dogs.store') }}"
+            class="mb-6 grid grid-cols-1 md:grid-cols-6 gap-3">
             @csrf
-            <div class="flex flex-col md:flex-row gap-2">
-                <input type="text" name="name" placeholder="Name" class="border p-2 flex-1" required>
-                <input type="text" name="breed" placeholder="Breed" class="border p-2 flex-1" required>
-                <input type="number" name="age" placeholder="Age" class="border p-2 w-24" required>
-                <select name="gender" class="border p-2 w-32" required>
-                    <option value="">Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-                <input type="file" name="image" class="border p-2" required>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded">Add Dog</button>
+
+            <input type="text" name="name"
+                placeholder="Name"
+                class="border p-2 md:col-span-2"
+                required>
+
+            <input type="text" name="breed"
+                placeholder="Breed"
+                class="border p-1 md:col-span-2"
+                required>
+
+            <input type="number" name="age"
+                placeholder="Age"
+                class="border p-1 md:col-span-1"
+                required>
+
+            <select name="gender"
+                    class="border p-3 md:col-span-1"
+                    required>
+                <option value="">Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <input type="file"
+                name="image"
+                class="border p-2 md:col-span-3"
+                required>
+
+            <textarea name="description"
+                    placeholder="Description (optional)"
+                    class="border p-2 md:col-span-6"
+                    rows="3"></textarea>
+
+            <div class="md:col-span-6">
+                <button class="bg-blue-500 text-white px-4 py-2 rounded">
+                    Add Dog
+                </button>
             </div>
         </form>
+
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
             @foreach($dogs as $dog)

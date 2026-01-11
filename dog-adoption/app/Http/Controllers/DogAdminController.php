@@ -53,13 +53,15 @@ class DogAdminController extends Controller
             'age' => 'required|integer|min:0',
             'gender' => 'required|in:male,female',
             'description' => 'nullable|string',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:max_width=2000,max_height=2000',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048|dimensions:max_width=2000,max_height=2000',
         ]);
 
         $dog->fill($request->only(['name', 'breed', 'age', 'gender', 'description']));
 
         if ($request->hasFile('image')) {
-            Storage::disk('public')->delete($dog->image_url);
+            if ($dog->image_url) {
+                Storage::disk('public')->delete($dog->image_url);
+            }
             $dog->image_url = $request->file('image')->store('dogs', 'public');
         }
 
