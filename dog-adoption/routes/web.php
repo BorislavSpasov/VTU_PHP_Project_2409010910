@@ -50,4 +50,7 @@ Route::middleware(['auth', 'super-admin'])->group(function () {
 Route::delete('/admin/adoptions/{adoption}', [AdoptionController::class, 'destroy'])
     ->name('admin.adoptions.destroy');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dogs', [DogController::class, 'index'])->name('dogs.index');
+});
 

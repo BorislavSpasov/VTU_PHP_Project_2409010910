@@ -1,8 +1,11 @@
+@import './adoptions.css';
 
-body{
-    background-color: green !important;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
     font-family: Arial, Helvetica, sans-serif;
-}
-div{
-    background-color: aqua;
+    background-color: white;
+    color: #1f2937;
 }
