@@ -1,0 +1,70 @@
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #d1d5db;
+}
+
+.users-table th,
+.users-table td {
+    border: 1px solid #d1d5db;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.users-table th {
+    background-color: #f3f4f6;
+    font-weight: 600;
+}
+
+.btn-promote {
+    background-color: #16a34a;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-promote:hover {
+    background-color: #15803d;
+}
+
+.btn-demote {
+    background-color: #dc2626;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-demote:hover {
+    background-color: #b91c1c;
+}
+
+.flash-success {
+    background-color: #dcfce7;
+    color: #166534;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.flash-error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.container {
+    max-width: 80rem; /* ~5xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5rem;
+}

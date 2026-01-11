@@ -1,4 +1,5 @@
 @import './adoptions.css';
+@import './users.css';
 
 @tailwind base;
 @tailwind components;
