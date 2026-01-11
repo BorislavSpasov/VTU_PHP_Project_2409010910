@@ -9,7 +9,6 @@ class Dog extends Model
 {
     use HasFactory;
 
-    // ✅ Add fillable properties for mass assignment
     protected $fillable = [
         'name',
         'breed',
