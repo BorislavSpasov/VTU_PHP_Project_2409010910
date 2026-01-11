@@ -1,13 +1,19 @@
 .admin-container {
     max-width: 80rem;
-    margin: 0 auto;
+    margin: 0.5rem auto;
     padding: 1.5rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 .edit-container {
     max-width: 36rem;
-    margin: 0 auto;
+    margin: 0.5rem auto;
     padding: 1.5rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 .dog-image {
@@ -24,10 +30,11 @@
 .input-select,
 .input-textarea {
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.6rem;
     border: 1px solid #d1d5db;
     margin-bottom: 1rem;
     border-radius: 0.25rem;
+    background-color: white;
 }
 
 .button-add {
@@ -59,8 +66,10 @@
 .dog-card {
     position: relative;
     border: 1px solid #d1d5db;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     overflow: hidden;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .dog-name {
@@ -112,4 +121,13 @@
     object-fit: cover;
     border-radius: 0.5rem;
     margin-bottom: 1rem;
+}
+
+.adoption-modal input,
+.adoption-modal textarea {
+    margin-bottom: 0.75rem;
+    padding: 0.6rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    background-color: white;
 }
